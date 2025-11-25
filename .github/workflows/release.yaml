@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - alpha
+      - beta
+      - main
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+      packages: write
+    name: Build and Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: /tmp/composer-cache
+          key: composer-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install Composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.1"
+          dev: no
+          quiet: yes
+          command: install
+          args: --no-dev --optimize-autoloader --prefer-dist
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          extra_plugins: |
+            conventional-changelog-conventionalcommits@8
+            @semantic-release/wordpress@1.7.0-beta.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

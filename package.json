@@ -1,0 +1,12 @@
+{
+  "name": "polylang-internal-link-replacer",
+  "version": "0.0.0-development",
+  "description": "Automatically replaces internal links with translated versions for Polylang",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epicwp/polylang-internal-link-replacer.git"
+  },
+  "author": "EPIC WP",
+  "license": "GPL-2.0-or-later"
+}
