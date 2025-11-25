@@ -50,4 +50,4 @@ jobs:
             conventional-changelog-conventionalcommits@8
             @semantic-release/wordpress@1.7.0-beta.1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
