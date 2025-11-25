@@ -1,0 +1,25 @@
+{
+    "name": "epic-wp/polylang-internal-link-replacer",
+    "description": "Automatically replaces internal links with translated versions for Polylang",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "EPIC WP",
+            "homepage": "https://epicwpsolutions.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "voku/simple_html_dom": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "EPIC_WP\\Polylang_Internal_Link_Replacer\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
