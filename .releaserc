@@ -101,7 +101,14 @@
         "withChangelog": true,
         "withVersionFile": true,
         "versionFiles": [],
-        "releasePath": "/tmp/wp-release"
+        "releasePath": "/tmp/wp-release",
+        "exclude": [
+          "DOCKER_ENV",
+          "docker_tag",
+          "phpstan.neon",
+          "phpcs.xml",
+          "stubs"
+        ]
       }
     ],
     [
