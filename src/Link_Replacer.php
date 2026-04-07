@@ -91,9 +91,13 @@ class Link_Replacer {
 	 * @return bool True if the url is excluded, false otherwise.
 	 */
 	private function is_excluded_url( string $url, array $query_vars ): bool {
-		// Skip if the url is a non default language url.
-		if ( isset( $query_vars['lang'] ) ) {
-			return true;
+		// Skip if the URL has an explicit ?lang= query parameter.
+		$parsed = $this->url_parser->parse_url( $url );
+		if ( isset( $parsed['query'] ) ) {
+			\parse_str( $parsed['query'], $url_query );
+			if ( isset( $url_query['lang'] ) ) {
+				return true;
+			}
 		}
 
 		// Make sure pagename query var is set.
@@ -133,6 +137,10 @@ class Link_Replacer {
 		if ( $this->is_excluded_url( $original_url, $query_vars ) ) {
 			return;
 		}
+
+		// Strip lang from query vars — it comes from rewrite rules with force_lang >= 1
+		// and is not needed for post/term resolution.
+		unset( $query_vars['lang'] );
 
 		// Get the translated url.
 		$translated_url = $this->translation_service->get_translated_url(
