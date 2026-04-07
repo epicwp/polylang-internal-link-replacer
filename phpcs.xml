@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ruleset name="Polylang Internal Link Replacer">
+	<description>Coding standards for Polylang Internal Link Replacer.</description>
+
+	<file>./src</file>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<config name="testVersion" value="8.1-"/>
+	<config name="minimum_wp_version" value="6.0"/>
+
+	<rule ref="Oblak"/>
+</ruleset>
