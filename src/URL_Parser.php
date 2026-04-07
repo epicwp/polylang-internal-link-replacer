@@ -166,7 +166,7 @@ class URL_Parser {
      * @return array<string,mixed>
      */
     private function convert_rewrite_to_query_vars( string $rewrite, array $matches ): array {
-        $query_string = \preg_replace( '/^index\.php\?/', '', $rewrite );
+        $query_string = (string) \preg_replace( '/^index\.php\?/', '', $rewrite );
         $match_count  = \count( $matches );
         for ( $i = 1; $i < $match_count; $i++ ) {
             $query_string = \str_replace( '$matches[' . $i . ']', $matches[ $i ], $query_string );
